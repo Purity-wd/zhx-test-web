@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.endeavor.demo.dao.UserMapper">
+    <select id="selectforid" resultType="User">
+        select * from user where id = #{id}
+  </select>
+    <select id="selectAll" resultType="User">
+        select * from user
+    </select>
+    <insert id="add" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                id,
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            createtime,
+            updatetime,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                #{id,jdbcType=INTEGER},
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+                NOW(),
+                NOW(),
+        </trim>
+<!--        <selectKey keyProperty="id" order="AFTER" resultType="int">-->
+<!--            select LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+    </insert>
+    <select id="findList" parameterType="int" resultType="User">
+        select * from user limit #{currPage},4
+    </select>
+    <delete id="deleteById" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+</mapper>

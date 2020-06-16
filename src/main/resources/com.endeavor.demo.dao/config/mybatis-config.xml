@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--<properties resource="db.properties"></properties>-->
+    <settings>
+        <!--cacheEnabled是否开启缓存 默认值为true 开发过程中一般设为false 上线后改为true-->
+        <setting name="cacheEnabled" value="true"/>
+        <!--是否使用懒加载机制 默认值为false-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!--是否使用列标签代替列名-->
+        <setting name="useColumnLabel" value="true"/>
+        <!--是否使用自动生成主键-->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!--当数据库表结构和雷属性结构不匹配时，是否映射，默认值为PARTIAL-->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <!--指定发现自动映射目标位置列，如果无法映射，控制台打印警告信息-->
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <!--设置连接默认的超时时间-->
+        <setting name="defaultStatementTimeout" value="25"/>
+        <setting name="defaultFetchSize" value="100"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <!--下划线和驼峰式命名法的自动匹配-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
+
+</configuration>

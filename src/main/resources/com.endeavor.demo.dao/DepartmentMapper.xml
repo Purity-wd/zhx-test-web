@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.endeavor.demo.dao.DepartmentMapper">
+    <insert id="insertDept" parameterType="Department">
+        insert into department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="type != null">
+            type,
+            </if>
+            <if test="name != null">
+            name,
+            </if>
+            createtime,
+             updatetime,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=INTEGER},
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+               NOW(),
+               NOW(),
+        </trim>
+    </insert>
+    <select id="findId" parameterType="String" resultType="int">
+        select id from department where type = #{type}
+    </select>
+</mapper>
