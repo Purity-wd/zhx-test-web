@@ -45,6 +45,7 @@ public class UserController {
     public String selectAll(){
         logger.info("获取之前");
         List<User> list = userService.selectAll();
+        logger.info("获取之后");
         return JSON.toJSONString(list);
     }
 
@@ -53,10 +54,12 @@ public class UserController {
     public String add( User user, String type){
         int userId = userService.add(user);
         int deptId = departmentService.findId(type);
+        logger.info("获取用户部门id");
         UserDepartment userDepartment = new UserDepartment();
         userDepartment.setDeptId(deptId);
         userDepartment.setUserId(userId);
         boolean a = userDepartmentService.insert(userDepartment);
+        logger.info("新增成功");
         if (a) return "添加成功";
         else return "添加失败";
     }
@@ -64,14 +67,18 @@ public class UserController {
     @ApiOperation(value = "用户分页测试接口", nickname = "测试")
     @PostMapping("findList")
     public List<User> findList(int currPage){
+        logger.info("分页前");
         List<User> list = userService.findList((currPage-1)*4);
+        logger.info("分页后");
         return list;
     }
 
     @PostMapping("findAllType")
     @ApiOperation(value = "显示用户部门分页测试接口", nickname = "测试")
     public String findAllType(int currPage){
+        logger.info("分页前");
         List<HashMap<String, Object>> list = userService.findAllType((currPage-1)*4);
+        logger.info("分页后");
         return JSON.toJSONString(list);
     }
 
@@ -79,8 +86,10 @@ public class UserController {
     @ApiOperation(value = "用户更新测试接口", nickname = "测试")
     public String updateUser(User user,String userename,String password){
         int id = userService.findUserId(userename, password);
+        logger.info("获取部门id");
         user.setId(id);
         boolean update = userService.updateUser(user);
+        logger.info("修改成功");
         if (update) return "修改成功";
         else return "修改失败";
     }
@@ -88,8 +97,10 @@ public class UserController {
     @ApiOperation(value = "用户删除测试接口", nickname = "测试")
     public String delete(String username,String password){
         int id = userService.findUserId(username, password);
+        logger.info("获取部门ID");
         boolean b = userService.deleteById(id);
         boolean b1 = userDepartmentService.deleteMid(id);
+        logger.info("删除用户和级联表中得数据");
         if (b & b1) return "删除成功";
         else return "删除失败";
     }
