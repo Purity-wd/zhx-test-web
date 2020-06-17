@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
-@Api(value = "用户接口")
+@Api(value = "用户接口",tags = "用户接口")
 @RestController
 @RequestMapping("user")
 public class UserController {

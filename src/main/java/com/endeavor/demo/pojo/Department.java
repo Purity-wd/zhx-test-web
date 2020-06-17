@@ -23,6 +23,12 @@ public class Department{
     private String name;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
+    @ApiModelProperty(value = "更新时间")
+    private Date updateTime;
+    @ApiModelProperty(value = "所属总公司ID")
+    private int parentId;
+
+
 
     public int getId() {
         return id;
@@ -63,6 +69,12 @@ public class Department{
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+    public int getParentId() {
+        return parentId;
+    }
 
-    private Date updateTime;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
 }

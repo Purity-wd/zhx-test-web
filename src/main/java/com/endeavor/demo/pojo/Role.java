@@ -1,29 +1,25 @@
 package com.endeavor.demo.pojo;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "中间表模型")
-public class UserDepartment{
-    @ApiModelProperty(value = "中间表ID")
+public class Role {
+    @ApiModelProperty(value = "角色id")
     private int id;
-    @ApiModelProperty(value = "部门ID")
-    private int deptId;
-    @ApiModelProperty(value = "用户ID")
-    private int userId;
+    @ApiModelProperty(value = "姓名")
+    private String name;
+    @ApiModelProperty(value = "描述")
+    private String describe;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
-    @ApiModelProperty(value = "更改时间")
+    @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 
     public int getId() {
@@ -34,20 +30,20 @@ public class UserDepartment{
         this.id = id;
     }
 
-    public int getDeptId() {
-        return deptId;
+    public String getName() {
+        return name;
     }
 
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Date getCreateTime() {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.endeavor.demo.dao.RoleMapper">
+    <insert id="insertRole" parameterType="Role">
+        insert into role (id,name,describe,createtime,updatetime)
+         values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{describe,jdbcType=VARCHAR},NOW(),NOW())
+    </insert>
+    <update id="updateRole" parameterType="Role">
+        update role set name = #{name,jdbcType=VARCHAR},
+        describe = #{describe,jdbcType=VARCHAR},updatetime = NOW() where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="findIdByName" parameterType="String">
+        select id from role where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

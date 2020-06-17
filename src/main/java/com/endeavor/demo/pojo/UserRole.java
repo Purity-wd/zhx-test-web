@@ -1,30 +1,24 @@
 package com.endeavor.demo.pojo;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "中间表模型")
-public class UserDepartment{
-    @ApiModelProperty(value = "中间表ID")
+public class UserRole {
+    @ApiModelProperty(value = "id")
     private int id;
-    @ApiModelProperty(value = "部门ID")
-    private int deptId;
     @ApiModelProperty(value = "用户ID")
     private int userId;
+    @ApiModelProperty(value = "角色ID")
+    private int roleId;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
-    @ApiModelProperty(value = "更改时间")
-    private Date updateTime;
 
     public int getId() {
         return id;
@@ -34,20 +28,20 @@ public class UserDepartment{
         this.id = id;
     }
 
-    public int getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(int deptId) {
-        this.deptId = deptId;
-    }
-
     public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public Date getCreateTime() {
@@ -65,4 +59,9 @@ public class UserDepartment{
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    @ApiModelProperty(value = "更新时间")
+    private Date updateTime;
+
+
 }

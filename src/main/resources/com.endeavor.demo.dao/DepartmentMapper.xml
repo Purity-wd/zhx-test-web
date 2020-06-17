@@ -15,6 +15,7 @@
             </if>
             createtime,
             updatetime,
+            parentId,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=INTEGER},
@@ -26,6 +27,7 @@
             </if>
             NOW(),
             NOW(),
+            3
         </trim>
     </insert>
     <select id="findId" parameterType="String" resultType="int">
