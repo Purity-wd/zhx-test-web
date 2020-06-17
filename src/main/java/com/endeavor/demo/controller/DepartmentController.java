@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "部门接口")
+@Api(value = "部门接口",tags = "部门接口")
 @RestController
 @RequestMapping("dept")
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
-
     @PostMapping("insert")
     @ApiOperation(value = "添加部门信息接口", nickname = "把Department添加")
     public String insertDept(Department department){
