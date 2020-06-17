@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(value = "中间表模型")
-public class UserDepartment implements Serializable {
+public class UserDepartment{
     private int id;
     private int deptId;
     private int userId;

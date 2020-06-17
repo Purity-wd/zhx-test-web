@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface DepartmentMapper {
     boolean insertDept(Department department);
     int findId(String type);
+    boolean update(Department department);
 }

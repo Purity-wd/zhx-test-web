@@ -13,12 +13,18 @@ public class DepartmentImpl implements DepartmentService {
     @Resource
     private DepartmentMapper departmentMapper;
     @Override
-    public boolean insertDept(Department department) {
+    public boolean insertDept(Department department)
+    {
         return departmentMapper.insertDept(department);
     }
 
     @Override
     public int findId(String type) {
         return departmentMapper.findId(type);
+    }
+
+    @Override
+    public boolean update(Department department) {
+        return departmentMapper.update(department);
     }
 }

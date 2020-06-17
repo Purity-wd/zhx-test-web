@@ -14,4 +14,9 @@ public class UserDepartmentImpl implements UserDepartmentService {
     public boolean insert(UserDepartment userDepartment) {
         return userDepartmentMapper.insert(userDepartment);
     }
+
+    @Override
+    public boolean deleteMid(int userId) {
+        return userDepartmentMapper.deleteMid(userId);
+    }
 }

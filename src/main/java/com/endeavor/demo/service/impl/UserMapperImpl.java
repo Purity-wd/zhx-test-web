@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -39,6 +40,21 @@ public class UserMapperImpl implements UserService {
     @Override
     public boolean deleteById(int id) {
         return userMapper.deleteById(id);
+    }
+
+    @Override
+    public List<HashMap<String,Object>> findAllType(int currPage) {
+        return userMapper.findAllType(currPage);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public int findUserId(String username, String password) {
+        return userMapper.findUserId(username,password);
     }
 
 

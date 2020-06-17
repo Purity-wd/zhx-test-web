@@ -12,28 +12,12 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "用户模型")
-public class User implements Serializable {
+public class User{
     private int id;
     private String username;
     private String password;
     private Date createTime;
     private Date updateTime;
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public int getId() {
         return id;
@@ -57,5 +41,21 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

@@ -8,13 +8,13 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
             <if test="type != null">
-            type,
+                type,
             </if>
             <if test="name != null">
-            name,
+                name,
             </if>
             createtime,
-             updatetime,
+            updatetime,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id,jdbcType=INTEGER},
@@ -24,11 +24,19 @@
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-               NOW(),
-               NOW(),
+            NOW(),
+            NOW(),
         </trim>
     </insert>
     <select id="findId" parameterType="String" resultType="int">
         select id from department where type = #{type}
     </select>
+    <update id="update" parameterType="Department">
+        update department
+        set
+            name = #{name,jdbcType=VARCHAR},
+            type = #{type,jdbcType=VARCHAR},
+            updatetime = NOW()
+            where  id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

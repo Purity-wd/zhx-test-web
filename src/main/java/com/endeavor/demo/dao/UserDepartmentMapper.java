@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDepartmentMapper {
     boolean insert(UserDepartment userDepartment);
+    boolean deleteMid(int userId);
 }

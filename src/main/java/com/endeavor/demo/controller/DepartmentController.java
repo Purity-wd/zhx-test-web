@@ -33,5 +33,14 @@ public class DepartmentController {
         return id;
     }
 
+    @PostMapping("update")
+    @ApiOperation(value = "更改部门信息", nickname = "啊啊啊")
+    public String update(Department department,String type){
+        int id = departmentService.findId(type);
+        department.setId(id);
+        boolean update = departmentService.update(department);
+        if (update) return "更改成功";
+        else return "更改失败";
+    }
 
 }

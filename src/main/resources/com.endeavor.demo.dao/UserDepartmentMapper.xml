@@ -28,4 +28,7 @@
             NOW(),
         </trim>
     </insert>
+    <delete id="deleteMid" parameterType="int">
+        delete from user where userId = {#userId}
+    </delete>
 </mapper>

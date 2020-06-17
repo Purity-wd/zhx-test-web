@@ -6,13 +6,15 @@
     <select id="selectforid" resultType="User">
         select * from user where id = #{id}
   </select>
+
     <select id="selectAll" resultType="User">
         select * from user
     </select>
+
     <insert id="add" parameterType="User" keyProperty="id" useGeneratedKeys="true">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-                id,
+            id,
             <if test="username != null">
                 username,
             </if>
@@ -23,19 +25,19 @@
             updatetime,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-                #{id,jdbcType=INTEGER},
+            #{id,jdbcType=INTEGER},
             <if test="username != null">
                 #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
                 #{password,jdbcType=VARCHAR},
             </if>
-                NOW(),
-                NOW(),
+            NOW(),
+            NOW(),
         </trim>
-<!--        <selectKey keyProperty="id" order="AFTER" resultType="int">-->
-<!--            select LAST_INSERT_ID()-->
-<!--        </selectKey>-->
+        <!--        <selectKey keyProperty="id" order="AFTER" resultType="int">-->
+        <!--            select LAST_INSERT_ID()-->
+        <!--        </selectKey>-->
     </insert>
     <select id="findList" parameterType="int" resultType="User">
         select * from user limit #{currPage},4
@@ -43,5 +45,28 @@
     <delete id="deleteById" parameterType="int">
         delete from user where id = #{id}
     </delete>
+    <select id="findAllType" resultType="java.util.HashMap" >
+        SELECT
+          user.username,
+          user_department.dept_id,
+          department.type
+        FROM
+          user_department
+          JOIN USER
+            ON user.id = user_department.user_id
+          JOIN department
+            ON department.id = user_department.dept_id
+            limit #{currPage},4
+    </select>
 
+    <update id="updateUser" parameterType="User">
+        update user
+        set username = #{username,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        updatetime = NOW() where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findUserId" resultType="int">
+        select id from user where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
 </mapper>
