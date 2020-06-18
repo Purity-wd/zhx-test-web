@@ -20,7 +20,7 @@ public class RoleController {
     private RoleService roleService;
     private final Logger logger = LoggerFactory.getLogger(RoleController.class);
 
-    @PostMapping("insert")
+    @PostMapping("insertRole")
     @ApiOperation(value = "添加角色接口", nickname = "添加角色接口")
     public String insert(Role role){
         logger.info("添加前");
@@ -30,7 +30,7 @@ public class RoleController {
         else return "添加角色失败";
     }
 
-    @PostMapping("update")
+    @PostMapping("updateRole")
     @ApiOperation(value = "更新角色接口", nickname = "更新角色接口")
     public String update(Role role,String name){
         int id = roleService.findIdByName(name);

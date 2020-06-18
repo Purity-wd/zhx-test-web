@@ -35,9 +35,7 @@
             NOW(),
             NOW(),
         </trim>
-        <!--        <selectKey keyProperty="id" order="AFTER" resultType="int">-->
-        <!--            select LAST_INSERT_ID()-->
-        <!--        </selectKey>-->
+
     </insert>
     <select id="findList" parameterType="int" resultType="User">
         select * from user limit #{currPage},4

@@ -27,11 +27,11 @@
             </if>
             NOW(),
             NOW(),
-            3
+            3,
         </trim>
     </insert>
     <select id="findId" parameterType="String" resultType="int">
-        select id from department where type = #{type}
+        select id from department where type = #{type,jdbcType=VARCHAR}
     </select>
     <update id="update" parameterType="Department">
         update department
