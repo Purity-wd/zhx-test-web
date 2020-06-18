@@ -14,7 +14,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public boolean insertRole(Role role) {
-        return roleMapper.insertRole(role);
+        Integer insert = roleMapper.insert(role);
+        if(insert>0){
+            return true;
+        }else {
+            return  false;
+        }
     }
 
     @Override
