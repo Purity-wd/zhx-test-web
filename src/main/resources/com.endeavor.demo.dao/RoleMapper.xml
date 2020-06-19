@@ -3,41 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.endeavor.demo.dao.RoleMapper">
-    <insert id="insertRole" parameterType="Role">
-        insert into role
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            id,
-            <if test="name != null">
-            name,
-            </if>
-            <if test="describe != null">
-            describe,
-            </if>
-            createtime,
-            updatetime,
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{id,jdbcType=INTEGER},
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-             <if test="describe != null">
-                #{describe,jdbcType=VARCHAR},
-            </if>
-            NOW(),
-            NOW(),
-        </trim>
-    </insert>
-    <update id="updateRole" parameterType="Role">
-        update role
-        set
-        name = #{name,jdbcType=VARCHAR},
-        describe = #{describe,jdbcType=VARCHAR},
-        updatetime = NOW()
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <select id="findIdByName" parameterType="String">
+    <select id="findRoleId" resultType="int">
         select id from role where name = #{name,jdbcType=VARCHAR}
     </select>
-
 </mapper>

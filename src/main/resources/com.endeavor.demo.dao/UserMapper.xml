@@ -3,68 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.endeavor.demo.dao.UserMapper">
-    <select id="selectforid" resultType="User">
-        select * from user where id = #{id}
-  </select>
-
-    <select id="selectAll" resultType="User">
-        select * from user
-    </select>
-
-    <insert id="add" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insertUser" parameterType="User"  useGeneratedKeys="true" keyProperty="id">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            id,
+            <if test="id != null">
+                id,
+            </if>
             <if test="username != null">
                 username,
             </if>
             <if test="password != null">
                 password,
             </if>
-            createtime,
-            updatetime,
+
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{id,jdbcType=INTEGER},
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
             <if test="username != null">
-                #{username,jdbcType=VARCHAR},
+            #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            NOW(),
-            NOW(),
+            #{password,jdbcType=VARCHAR},
+        </if>
         </trim>
-
-    </insert>
-    <select id="findList" parameterType="int" resultType="User">
-        select * from user limit #{currPage},4
-    </select>
-    <delete id="deleteById" parameterType="int">
-        delete from user where id = #{id}
-    </delete>
-    <select id="findAllType" resultType="java.util.HashMap" >
-        SELECT
-          user.username,
-          user_department.dept_id,
-          department.type
-        FROM
-          user_department
-          JOIN USER
-            ON user.id = user_department.user_id
-          JOIN department
-            ON department.id = user_department.dept_id
-            limit #{currPage},4
-    </select>
-
-    <update id="updateUser" parameterType="User">
-        update user
-        set username = #{username,jdbcType=VARCHAR},
-        password = #{password,jdbcType=VARCHAR},
-        updatetime = NOW() where id = #{id,jdbcType=INTEGER}
-    </update>
-
-    <select id="findUserId" resultType="int">
-        select id from user where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
-    </select>
+</insert>
 </mapper>

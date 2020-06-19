@@ -10,13 +10,5 @@ import javax.annotation.Resource;
 public class UserDepartmentImpl implements UserDepartmentService {
     @Resource
     private UserDepartmentMapper userDepartmentMapper;
-    @Override
-    public boolean insert(UserDepartment userDepartment) {
-        return userDepartmentMapper.insert(userDepartment);
-    }
 
-    @Override
-    public boolean deleteMid(int userId) {
-        return userDepartmentMapper.deleteMid(userId);
-    }
 }
