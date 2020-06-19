@@ -1,16 +1,12 @@
-package com.endeavor.demo.pojo;
+package com.endeavor.demo.pojo.Vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import lombok.*;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.sql.Date;
+import lombok.Data;
 
+import java.sql.Date;
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ApiModel(value = "用户模型")
-public class User{
+public class UserVo {
     @ApiModelProperty(value = "用户ID")
     private int id;
     @ApiModelProperty(value = "用户名")
@@ -21,6 +17,6 @@ public class User{
     private Date createTime;
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
-
-
+    private Integer deptId;
+    private Integer roleId;
 }
