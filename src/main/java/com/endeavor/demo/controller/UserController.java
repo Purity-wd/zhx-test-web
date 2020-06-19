@@ -1,5 +1,6 @@
 package com.endeavor.demo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.endeavor.demo.dao.*;
 import com.endeavor.demo.pojo.Role;
 import com.endeavor.demo.pojo.User;
@@ -19,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 
 @Api(value = "用户接口",tags = "用户接口")
@@ -42,32 +45,37 @@ public class UserController {
     private UserRoleMapper userRoleMapper;
 
 
-    @PostMapping("add")
-    @ApiOperation(value = "添加用户信息接口", nickname = "把User添加")
-    public String add(@RequestParam User user,@RequestParam UserDepartment userDepartment, @RequestParam Role role){
-
-        int uid = userService.insertUser(user);
-        logger.info("用户ID查找成功");
-        userDepartment.setUserId(user.getId());
-        userDepartmentMapper.insert(userDepartment);
-        logger.info("用户部门中间表新增成功");
-        roleMapper.insert(role);
-        logger.info("角色表新增成功");
-        int roleId = roleService.findRoleId(role.getName());
-        UserRole userRole = new UserRole();
-        userRole.setId(uid);
-        userRole.setRoleId(roleId);
-        userRoleMapper.insert(userRole);
-        logger.info("用户角色表新增成功");
-        return "用户新增成功";
-    }
+//    @PostMapping("add")
+//    @ApiOperation(value = "添加用户信息接口", nickname = "把User添加")
+//    public String add(@RequestParam User user,@RequestParam UserDepartment userDepartment, @RequestParam Role role){
+//        int uid = userService.insertUser(user);
+//        logger.info("用户ID查找成功");
+//        userDepartment.setUserId(user.getId());
+//        userDepartmentMapper.insert(userDepartment);
+//        logger.info("用户部门中间表新增成功");
+//        roleMapper.insert(role);
+//        logger.info("角色表新增成功");
+//        int roleId = roleService.findRoleId(role.getName());
+//        UserRole userRole = new UserRole();
+//        userRole.setId(uid);
+//        userRole.setRoleId(roleId);
+//        userRoleMapper.insert(userRole);
+//        logger.info("用户角色表新增成功");
+//        return "用户新增成功";
+//    }
 
 
     @Transactional
     @PostMapping("add1")
     @ApiOperation(value = "添加用户信息接口", nickname = "把User添加")
     public String add1(@RequestBody UserVo userVo){
-
         return userService.addUser(userVo);
     }
+    @PostMapping("find")
+    @ApiOperation(value = "通过部门ID和角色ID找下属信息接口", nickname = "把User添加")
+    public String findList(@RequestBody UserVo userVo){
+        List<Map<String, Object>> map = userService.findSubordinate(userVo);
+        return JSON.toJSONString(map);
+    }
+
 }
