@@ -41,7 +41,7 @@ public class UserController {
 
     @PostMapping("add")
     @ApiOperation(value = "添加用户信息接口", nickname = "把User添加")
-    public String add(@RequestParam User user,@RequestParam UserDepartment userDepartment, @RequestParam Role role){
+    public String add(@RequestBody User user,@RequestBody UserDepartment userDepartment, @RequestBody Role role){
         int uid = userService.insertUser(user);
         logger.info("用户ID查找成功");
         userDepartment.setUserId(user.getId());
